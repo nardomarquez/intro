@@ -1,19 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-
-const helveticaNeue = localFont({
-  src: [
-    {
-      path: "./fonts/helvetica-neue/HelveticaNeueBold.otf",
-      weight: "700",
-    },
-    {
-      path: "./fonts/helvetica-neue/HelveticaNeueMedium.otf",
-      weight: "500",
-    },
-  ],
-});
 
 export const metadata: Metadata = {
   title: "Nardo Marquez",
@@ -27,9 +15,31 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${helveticaNeue.className} antialiased`}>
+      <body
+        className={`${helveticaNeue.variable} ${ibmPlexMono.variable} font-bold leading-[110%] tracking-[-0.04em] antialiased`}
+      >
         {children}
       </body>
     </html>
   );
 }
+
+const helveticaNeue = localFont({
+  src: [
+    {
+      path: "./fonts/helvetica-neue/HelveticaNeueBold.otf",
+      weight: "700",
+    },
+    {
+      path: "./fonts/helvetica-neue/HelveticaNeueMedium.otf",
+      weight: "500",
+    },
+  ],
+  variable: "--font-helvetica-neue",
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-ibm-plex-mono",
+});
